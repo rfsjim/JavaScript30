@@ -54,7 +54,7 @@
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-    function sortInventorsByBirthdateDesc(arr)
+    function sortInventorsByBirthdateAsc(arr)
     {
       return arr
         .sort((a, b) => a.year - b.year);
@@ -87,13 +87,37 @@
       return boulevardNames.filter(name => name.includes('de'));
     }
 
-
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    function sortPeopleByLastName(arr)
+    {
+      return arr
+        .sort((a, b) => {
+          const [aLast, aFirst] = a.split(', ');
+          const [bLast, bFirst] = b.split(', ');
+
+          return aLast === bLast
+            ? aFirst > bFirst ? 1 : -1
+            : aLast > bLast ? 1: -1;
+        });
+    }
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    function sumInstancesOfArray(arr)
+    {
+      return arr
+        .reduce((obj, item) => {
+          if (!obj[item])
+          {
+            obj[item] = 0; 
+          }
+          obj[item]++;
+          return obj;
+        }, {});
+    }
 
     // Bonus for fun and profit
     function getInventorsFirstLastNamesAndAge(arr)
